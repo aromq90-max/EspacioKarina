@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A0E17" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Para Karina — El Amor de Mi Vida</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-deep: #090C15;
+      --bg-midnight: #121826;
+      --gold-warm: #EBC796;
+      --gold-glow: rgba(235, 199, 150, 0.28);
+      --gold-border: rgba(235, 199, 150, 0.26);
+      --cream-text: #FAF5EE;
+      --cream-soft: #E0D7C8;
+      --rose-dust: #DC949A;
+      --rose-deep: #B56570;
+      --rose-glow: rgba(220, 148, 154, 0.28);
+      --glass-bg: rgba(19, 24, 38, 0.72);
+      --glass-card: rgba(27, 33, 52, 0.68);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-deep);
+      color: var(--cream-text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(220, 148, 154, 0.2), transparent 45%),
+        radial-gradient(circle at 85% 32%, rgba(235, 199, 150, 0.16), transparent 50%),
+        radial-gradient(circle at 50% 78%, rgba(64, 34, 54, 0.42), transparent 60%),
+        linear-gradient(180deg, #090C15 0%, #101424 50%, #090C15 100%);
+      overflow-x: hidden;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      touch-action: pan-y;
+    }
+
+    /* Ambient Firefly & Rose Petal Canvas */
+    #fireflies-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Typography */
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    /* Top Minimal Header */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: calc(0.85rem + var(--safe-top)) 1.15rem 0.85rem;
+      background: linear-gradient(180deg, rgba(9, 12, 21, 0.94) 0%, rgba(9, 12, 21, 0) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .top-bar > * {
+      pointer-events: auto;
+    }
+
+    .brand-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.18rem;
+      color: var(--gold-warm);
+      opacity: 0.96;
+      letter-spacing: 0.03em;
+    }
+
+    .sound-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(19, 24, 38, 0.88);
+      border: 1px solid var(--gold-border);
+      color: var(--cream-soft);
+      padding: 0.5rem 0.95rem;
+      min-height: 40px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .sound-btn:active {
+      transform: scale(0.96);
+    }
+
+    .sound-btn.active {
+      border-color: var(--gold-warm);
+      color: var(--gold-warm);
+      box-shadow: 0 0 18px rgba(235, 199, 150, 0.24);
+    }
+
+    .sound-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .sound-bars span {
+      width: 2px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+
+    .sound-btn.active .sound-bars span:nth-child(1) { animation: soundWave 0.9s infinite ease-in-out; }
+    .sound-btn.active .sound-bars span:nth-child(2) { animation: soundWave 0.9s 0.25s infinite ease-in-out; }
+    .sound-btn.active .sound-bars span:nth-child(3) { animation: soundWave 0.9s 0.5s infinite ease-in-out; }
+
+    @keyframes soundWave {
+      0%, 100% { height: 4px; }
+      50% { height: 12px; }
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 1.15rem calc(5.5rem + var(--safe-bottom));
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    /* Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: calc(4.5rem + var(--safe-top));
+      padding-bottom: 3rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--rose-dust);
+      margin-bottom: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.45rem, 9.5vw, 4.45rem);
+      line-height: 1.1;
+      color: var(--cream-text);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      color: var(--gold-warm);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      max-width: 550px;
+      font-size: 1.02rem;
+      color: var(--cream-soft);
+      font-weight: 300;
+      margin-bottom: 2.35rem;
+      line-height: 1.8;
+    }
+
+    /* Interactive Glowing Heart Trigger */
+    .lantern-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.95rem;
+    }
+
+    .lantern-btn {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 1px solid rgba(235, 199, 150, 0.6);
+      background: radial-gradient(circle, rgba(220, 148, 154, 0.34) 0%, rgba(19, 24, 38, 0.9) 72%);
+      color: var(--gold-warm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 42px rgba(220, 148, 154, 0.32);
+      touch-action: manipulation;
+    }
+
+    .lantern-btn::before {
+      content: '';
+      position: absolute;
+      inset: -11px;
+      border-radius: 50%;
+      border: 1px solid rgba(220, 148, 154, 0.32);
+      animation: pulseRing 3s infinite ease-out;
+      pointer-events: none;
+    }
+
+    .lantern-btn:active {
+      transform: scale(0.94);
+      box-shadow: 0 0 52px rgba(235, 199, 150, 0.5);
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.9; }
+      100% { transform: scale(1.45); opacity: 0; }
+    }
+
+    .lantern-label {
+      font-size: 0.82rem;
+      color: var(--gold-warm);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .touch-hint {
+      margin-top: 2.25rem;
+      font-size: 0.78rem;
+      color: rgba(224, 215, 200, 0.6);
+      font-style: italic;
+    }
+
+    /* Section Headers */
+    .chapter-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .chapter-num {
+      display: inline-block;
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose-dust);
+      margin-bottom: 0.55rem;
+    }
+
+    .chapter-title {
+      font-size: clamp(1.92rem, 6.8vw, 2.8rem);
+      color: var(--cream-text);
+      margin-bottom: 0.75rem;
+      line-height: 1.18;
+    }
+
+    .chapter-desc {
+      max-width: 550px;
+      margin: 0 auto;
+      color: var(--cream-soft);
+      font-size: 0.97rem;
+      font-weight: 300;
+    }
+
+    /* Glass Panels */
+    .glass-panel {
+      background: var(--glass-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: 22px;
+      padding: 1.85rem 1.35rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+    }
+
+    /* CHAPTER 1: SANCTUARY & BREATHING + RELEASE WEIGHT */
+    .sanctuary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .breath-box {
+      text-align: center;
+      padding: 1.75rem 1.25rem;
+      border-radius: 18px;
+      background: rgba(9, 12, 21, 0.6);
+      border: 1px solid rgba(235, 199, 150, 0.18);
+    }
+
+    .breath-orb-container {
+      position: relative;
+      width: 144px;
+      height: 144px;
+      margin: 1.35rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breath-orb {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(235, 199, 150, 0.92) 0%, rgba(220, 148, 154, 0.5) 70%, transparent 100%);
+      box-shadow: 0 0 40px rgba(220, 148, 154, 0.42);
+      transition: transform 4s ease-in-out;
+    }
+
+    .breath-orb.inhale { transform: scale(1.75); }
+    .breath-orb.hold { transform: scale(1.75); }
+    .breath-orb.exhale { transform: scale(0.95); }
+
+    .breath-ring {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(235, 199, 150, 0.3);
+      pointer-events: none;
+    }
+
+    .breath-status {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.34rem;
+      font-style: italic;
+      color: var(--gold-warm);
+      min-height: 2rem;
+    }
+
+    .soft-btn {
+      margin-top: 0.9rem;
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      color: var(--cream-text);
+      padding: 0.65rem 1.35rem;
+      min-height: 44px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .soft-btn:active {
+      background: rgba(235, 199, 150, 0.16);
+      border-color: var(--gold-warm);
+      transform: scale(0.97);
+    }
+
+    /* Release Weight Interactive Box */
+    .release-box {
+      padding: 1.75rem 1.25rem;
+      border-radius: 18px;
+      background: rgba(9, 12, 21, 0.6);
+      border: 1px solid rgba(220, 148, 154, 0.26);
+    }
+
+    .release-box h3 {
+      font-size: 1.5rem;
+      color: var(--cream-text);
+      margin-bottom: 0.45rem;
+    }
+
+    .release-box p {
+      font-size: 0.93rem;
+      color: var(--cream-soft);
+      margin-bottom: 1rem;
+    }
+
+    .release-input-wrap {
+      position: relative;
+    }
+
+    .release-textarea {
+      width: 100%;
+      min-height: 100px;
+      background: rgba(19, 24, 38, 0.9);
+      border: 1px solid rgba(235, 199, 150, 0.24);
+      border-radius: 14px;
+      padding: 0.95rem;
+      color: var(--cream-text);
+      font-family: inherit;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+      transition: all 0.6s ease;
+    }
+
+    .release-textarea:focus {
+      border-color: var(--gold-warm);
+      box-shadow: 0 0 22px rgba(235, 199, 150, 0.14);
+    }
+
+    .release-textarea.dissolving {
+      opacity: 0;
+      transform: translateY(-14px) scale(0.97);
+      filter: blur(8px);
+    }
+
+    .release-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+      margin-top: 0.95rem;
+    }
+
+    .release-feedback {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--gold-warm);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-align: center;
+    }
+
+    .release-feedback.show {
+      opacity: 1;
+    }
+
+    .gold-pill-btn {
+      background: linear-gradient(135deg, rgba(235, 199, 150, 0.28), rgba(220, 148, 154, 0.28));
+      border: 1px solid var(--gold-warm);
+      color: var(--cream-text);
+      padding: 0.75rem 1.4rem;
+      min-height: 46px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .gold-pill-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 22px rgba(235, 199, 150, 0.3);
+    }
+
+    /* CHAPTER 2: ROMANTIC PROMISES CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+    }
+
+    .promise-card {
+      position: relative;
+      min-height: 195px;
+      border-radius: 20px;
+      background: var(--glass-card);
+      border: 1px solid var(--gold-border);
+      padding: 1.65rem 1.35rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .promise-card:active {
+      transform: scale(0.985);
+    }
+
+    .promise-card.opened {
+      border-color: rgba(235, 199, 150, 0.58);
+      background: linear-gradient(155deg, rgba(34, 36, 60, 0.9), rgba(19, 24, 38, 0.95));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+    }
+
+    .card-front {
+      text-align: center;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .promise-card.opened .card-front {
+      display: none;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 0.85rem;
+      border-radius: 50%;
+      background: rgba(220, 148, 154, 0.16);
+      border: 1px solid rgba(235, 199, 150, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-warm);
+    }
+
+    .card-front h3 {
+      font-size: 1.36rem;
+      color: var(--cream-text);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-tap-hint {
+      font-size: 0.76rem;
+      color: var(--gold-warm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .card-back {
+      display: none;
+      animation: fadeInCard 0.55s ease forwards;
+    }
+
+    .promise-card.opened .card-back {
+      display: block;
+    }
+
+    .card-back-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.36rem;
+      color: var(--gold-warm);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-back p {
+      font-size: 0.95rem;
+      color: var(--cream-soft);
+      line-height: 1.74;
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cards-progress {
+      text-align: center;
+      margin-top: 1.35rem;
+      font-size: 0.85rem;
+      color: var(--cream-soft);
+      opacity: 0.88;
+    }
+
+    /* CHAPTER 3: HEART LOCK GATEWAY */
+    .heart-lock-card {
+      position: relative;
+      padding: 2.35rem 1.35rem;
+      border-radius: 24px;
+      background: linear-gradient(165deg, rgba(28, 29, 49, 0.9), rgba(14, 18, 30, 0.96));
+      border: 1px solid rgba(235, 199, 150, 0.35);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.48);
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .lock-icon-ring {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220, 148, 154, 0.28), rgba(19, 24, 38, 0.85));
+      border: 1px solid rgba(235, 199, 150, 0.48);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-warm);
+      box-shadow: 0 0 28px rgba(220, 148, 154, 0.25);
+    }
+
+    .lock-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-style: italic;
+      color: var(--gold-warm);
+      margin-bottom: 0.65rem;
+      line-height: 1.28;
+    }
+
+    .lock-subtext {
+      font-size: 0.93rem;
+      color: var(--cream-soft);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .pin-dot {
+      width: 48px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(9, 12, 21, 0.82);
+      border: 1px solid rgba(235, 199, 150, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--gold-warm);
+      transition: all 0.22s ease;
+    }
+
+    .pin-dot.filled {
+      border-color: var(--gold-warm);
+      background: rgba(235, 199, 150, 0.12);
+      box-shadow: 0 0 16px rgba(235, 199, 150, 0.18);
+    }
+
+    .pin-dot.error {
+      border-color: #E07A7A;
+      animation: shakePin 0.4s ease;
+    }
+
+    @keyframes shakePin {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-4px); }
+    }
+
+    .lock-error-msg {
+      min-height: 1.4rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: var(--rose-dust);
+      margin-bottom: 1rem;
+    }
+
+    .keypad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      max-width: 270px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .key-btn {
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(25, 33, 52, 0.78);
+      border: 1px solid rgba(235, 199, 150, 0.2);
+      color: var(--cream-text);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .key-btn:active {
+      transform: scale(0.93);
+      background: rgba(235, 199, 150, 0.22);
+      border-color: var(--gold-warm);
+    }
+
+    .key-btn.action-key {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--cream-soft);
+    }
+
+    .unlock-submit-btn {
+      width: 100%;
+      max-width: 270px;
+      min-height: 48px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-warm);
+      background: linear-gradient(135deg, rgba(235, 199, 150, 0.28), rgba(220, 148, 154, 0.26));
+      color: var(--cream-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .unlock-submit-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* HIDDEN CHAPTER 3 CONTENT REVEAL */
+    .chapter3-unlocked-content {
+      display: none;
+      animation: unlockFade 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .chapter3-unlocked-content.open {
+      display: block;
+    }
+
+    @keyframes unlockFade {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CHAPTER 3: THE LETTER & SECOND CHANCE */
+    .letter-container {
+      position: relative;
+      padding: 2.2rem 1.35rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(26, 29, 49, 0.9) 0%, rgba(14, 18, 31, 0.96) 100%);
+      border: 1px solid rgba(235, 199, 150, 0.35);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    }
+
+    .letter-container::before {
+      content: '“';
+      position: absolute;
+      top: 0.4rem;
+      left: 1.15rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      color: rgba(235, 199, 150, 0.14);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .letter-salutation {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      font-style: italic;
+      color: var(--gold-warm);
+      margin-bottom: 1.35rem;
+    }
+
+    .letter-paragraph {
+      font-size: 1.01rem;
+      color: var(--cream-text);
+      margin-bottom: 1.35rem;
+      font-weight: 300;
+      line-height: 1.85;
+      opacity: 0.18;
+      transform: translateY(8px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+
+    .letter-paragraph.lit {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .letter-paragraph strong {
+      color: var(--gold-warm);
+      font-weight: 500;
+    }
+
+    /* Honest Truth Section */
+    .truth-divider {
+      margin: 2.2rem 0 1.8rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(235, 199, 150, 0.25);
+    }
+
+    .truth-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose-dust);
+      margin-bottom: 0.45rem;
+    }
+
+    .truth-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: var(--gold-warm);
+      margin-bottom: 1.15rem;
+      font-style: italic;
+      line-height: 1.25;
+    }
+
+    .flowers-note {
+      margin: 1.55rem 0;
+      padding: 1.35rem 1.2rem;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(235, 199, 150, 0.12), rgba(220, 148, 154, 0.1));
+      border-left: 3px solid var(--gold-warm);
+      font-size: 0.98rem;
+      color: var(--cream-text);
+      line-height: 1.8;
+    }
+
+    .letter-signature {
+      margin-top: 2rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(235, 199, 150, 0.18);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-style: italic;
+      color: var(--gold-warm);
+    }
+
+    /* Coherent Romantic Closing Choices */
+    .closing-choice-box {
+      margin-top: 2.4rem;
+      text-align: center;
+      padding: 1.9rem 1.2rem;
+      border-radius: 22px;
+      background: rgba(19, 24, 38, 0.8);
+      border: 1px solid rgba(235, 199, 150, 0.3);
+    }
+
+    .closing-choice-box h3 {
+      font-size: 1.75rem;
+      color: var(--cream-text);
+      margin-bottom: 0.65rem;
+      line-height: 1.25;
+    }
+
+    .closing-choice-box p {
+      font-size: 0.95rem;
+      color: var(--cream-soft);
+      max-width: 510px;
+      margin: 0 auto 1.65rem;
+    }
+
+    .choice-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .choice-card-btn {
+      width: 100%;
+      padding: 1.15rem 1.2rem;
+      min-height: 74px;
+      border-radius: 16px;
+      border: 1px solid var(--gold-border);
+      background: rgba(27, 33, 52, 0.82);
+      color: var(--cream-text);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      text-decoration: none;
+      display: block;
+      touch-action: manipulation;
+    }
+
+    .choice-card-btn.primary-heart {
+      border-color: rgba(235, 199, 150, 0.72);
+      background: linear-gradient(145deg, rgba(235, 199, 150, 0.26), rgba(220, 148, 154, 0.24));
+      box-shadow: 0 8px 26px rgba(235, 199, 150, 0.16);
+    }
+
+    .choice-card-btn:active {
+      transform: scale(0.98);
+      border-color: var(--gold-warm);
+    }
+
+    .choice-card-btn strong {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.36rem;
+      color: var(--gold-warm);
+      margin-bottom: 0.25rem;
+    }
+
+    .wa-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(235, 199, 150, 0.22);
+      border: 1px solid rgba(235, 199, 150, 0.48);
+      color: var(--gold-warm);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .choice-card-btn span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--cream-soft);
+      line-height: 1.48;
+    }
+
+    /* Response Voucher / Message Box */
+    .response-reveal {
+      display: none;
+      margin-top: 1.65rem;
+      padding: 1.5rem 1.2rem;
+      border-radius: 18px;
+      background: rgba(9, 12, 21, 0.92);
+      border: 1px solid var(--gold-warm);
+      animation: fadeInCard 0.55s ease forwards;
+      text-align: center;
+    }
+
+    .response-reveal.active {
+      display: block;
+    }
+
+    .response-reveal h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.48rem;
+      color: var(--gold-warm);
+      margin-bottom: 0.5rem;
+    }
+
+    .response-reveal p {
+      font-size: 0.92rem;
+      color: var(--cream-text);
+      margin-bottom: 1.15rem;
+    }
+
+    .action-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .whatsapp-direct-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #EBC796, #DDA97C);
+      color: #090C15;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.35rem;
+      min-height: 48px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.25s ease;
+      box-shadow: 0 8px 24px rgba(235, 199, 150, 0.26);
+      touch-action: manipulation;
+    }
+
+    .whatsapp-direct-btn:active {
+      transform: scale(0.97);
+    }
+
+    .copy-voucher-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(235, 199, 150, 0.12);
+      border: 1px solid var(--gold-warm);
+      color: var(--gold-warm);
+      padding: 0.75rem 1.25rem;
+      min-height: 46px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .copy-voucher-btn:active {
+      background: rgba(235, 199, 150, 0.24);
+      transform: scale(0.97);
+    }
+
+    /* Desktop / Tablet Enhancements */
+    @media (min-width: 680px) {
+      .top-bar {
+        padding: 1.15rem 1.75rem;
+      }
+
+      main {
+        padding: 0 1.5rem 7rem;
+      }
+
+      section {
+        padding: 6rem 0;
+      }
+
+      .glass-panel {
+        padding: 2.75rem 2.25rem;
+      }
+
+      .sanctuary-grid {
+        grid-template-columns: 1fr 1.15fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.35rem;
+      }
+
+      .release-actions {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .release-feedback {
+        text-align: left;
+      }
+
+      .letter-container {
+        padding: 3.25rem 2.75rem;
+      }
+
+      .choice-buttons {
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .choice-card-btn {
+        flex: 1;
+        max-width: 310px;
+      }
+
+      .action-row {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    /* Sparkle burst on click/tap */
+    .click-sparkle {
+      position: fixed;
+      pointer-events: none;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-warm);
+      box-shadow: 0 0 10px var(--gold-warm);
+      z-index: 99;
+      animation: sparkleOut 0.85s ease-out forwards;
+    }
+
+    @keyframes sparkleOut {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Interactive Firefly & Rose Petal Light Sky -->
+  <canvas id="fireflies-canvas"></canvas>
+
+  <!-- Minimal Top Bar -->
+  <header class="top-bar">
+    <span class="brand-tag">Para Karina</span>
+    <button class="sound-btn" id="soundToggle" aria-label="Activar o pausar música ambiental">
+      <div class="sound-bars">
+        <span></span><span></span><span></span>
+      </div>
+      <span id="soundLabel">Melodía suave</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <p class="hero-eyebrow reveal">Escrito con el alma solo para ti</p>
+      <h1 class="reveal">Para ti, <em>Karina</em>.<br>Porque sigues siendo el amor de mi vida.</h1>
+      <p class="hero-subtitle reveal">
+        Si hoy las estrellas parecen apagarse y el mundo te pesa demasiado, recuerda que aquí late un corazón que te ama sin medida. No tienes que fingir fortaleza; este rincón nació para abrazarte el alma y recordarte que nunca estás sola.
+      </p>
+
+      <div class="lantern-wrapper reveal">
+        <button class="lantern-btn" id="startJourneyBtn" aria-label="Entrar a este espacio para ti">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="rgba(220,148,154,0.38)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+        <span class="lantern-label">Toca mi corazón para entrar</span>
+      </div>
+
+      <p class="touch-hint reveal">Toca cualquier lugar de la pantalla para encender destellos de luz</p>
+    </section>
+
+    <!-- CHAPTER 1: TU REFUGIO -->
+    <section id="chapter-refugio">
+      <div class="chapter-header reveal">
+        <span class="chapter-num">Capítulo I</span>
+        <h2 class="chapter-title">Primero, respira. Estoy contigo.</h2>
+        <p class="chapter-desc">
+          Sé que hoy estás atravesando un momento difícil y que no quieres ver a nadie. Antes de cualquier palabra, quiero regalarte un instante de paz para aliviar un poco el peso que llevas dentro.
+        </p>
+      </div>
+
+      <div class="glass-panel reveal">
+        <div class="sanctuary-grid">
+          <!-- Breathing Guide -->
+          <div class="breath-box">
+            <p style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--cream-soft);">Un respiro para tu alma</p>
+            <div class="breath-orb-container">
+              <div class="breath-ring"></div>
+              <div class="breath-orb" id="breathOrb"></div>
+            </div>
+            <div class="breath-status" id="breathStatus">Inhala despacio...</div>
+            <button class="soft-btn" id="toggleBreathBtn">Pausar guía</button>
+          </div>
+
+          <!-- Release Weight Box -->
+          <div class="release-box">
+            <h3>Suelta lo que hoy te duele</h3>
+            <p>
+              Si hay un pensamiento que te lastima o te tiene triste hoy, escríbelo aquí. No se guarda en ningún lado; al soltarlo, se transforma en luz.
+            </p>
+            <div class="release-input-wrap">
+              <textarea
+                class="release-textarea"
+                id="weightInput"
+                placeholder="Escribe aquí lo que hoy te pesa en el corazón..."
+              ></textarea>
+            </div>
+            <div class="release-actions">
+              <span class="release-feedback" id="releaseFeedback">Ojalá pudiera abrazarte y quitar ese peso ahora mismo.</span>
+              <button class="gold-pill-btn" id="releaseBtn">Convertir en luz ✨</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 2: LO QUE SIENTO POR TI -->
+    <section id="chapter-presencia">
+      <div class="chapter-header reveal">
+        <span class="chapter-num">Capítulo II</span>
+        <h2 class="chapter-title">Cuatro verdades de un amor que no se apaga</h2>
+        <p class="chapter-desc">
+          Toca cada tarjeta. Son las promesas silenciosas que siguen intactas incluso en tus días más grises.
+        </p>
+      </div>
+
+      <div class="cards-grid reveal">
+        <!-- Card 1 -->
+        <div class="promise-card" data-card="1" role="button" tabindex="0">
+          <div class="card-front">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>En tus noches más grises</h3>
+            <span class="card-tap-hint">Toca para abrir</span>
+          </div>
+          <div class="card-back">
+            <h4 class="card-back-title">Mi amor es tu refugio</h4>
+            <p>
+              No te amo solo cuando sonríes o cuando todo brilla. Te amo todavía más cuando estás frágil y necesitas a alguien que abrace tus silencios sin pedirte nada a cambio.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="promise-card" data-card="2" role="button" tabindex="0">
+          <div class="card-front">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <h3>A pesar de la distancia</h3>
+            <span class="card-tap-hint">Toca para abrir</span>
+          </div>
+          <div class="card-back">
+            <h4 class="card-back-title">Te sigo eligiendo cada día</h4>
+            <p>
+              Por mucho que me hayas ignorado o que hayas levantado muros para protegerte, lo que siento por ti no se ha movido ni un milímetro. Sigues siendo la mujer que más amo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="promise-card" data-card="3" role="button" tabindex="0">
+          <div class="card-front">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3>Con madurez y precisión</h3>
+            <span class="card-tap-hint">Toca para abrir</span>
+          </div>
+          <div class="card-back">
+            <h4 class="card-back-title">Amar mejor, no repetir heridas</h4>
+            <p>
+              Entiendo tus miedos del pasado. Por eso no te pido volver atrás, sino construir algo nuevo hacia adelante: con hechos, con calma, con madurez y cuidando cada detalle de lo nuestro.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="promise-card" data-card="4" role="button" tabindex="0">
+          <div class="card-front">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+              </svg>
+            </div>
+            <h3>Lo que sentí en tu mirada</h3>
+            <span class="card-tap-hint">Toca para abrir</span>
+          </div>
+          <div class="card-back">
+            <h4 class="card-back-title">Sé que tú también me amas</h4>
+            <p>
+              A veces el miedo habla más fuerte que la razón, pero cuando estamos cerca se nota que este amor sigue vivo en los dos. Solo hace falta valentía para volver a elegirse.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="cards-progress reveal" id="cardsProgress">Has descubierto 0 de 4 verdades</p>
+    </section>
+
+    <!-- CHAPTER 3: PROTECTED BY HEART PASSWORD (0305) -->
+    <section id="chapter-carta">
+      <div class="chapter-header reveal">
+        <span class="chapter-num">Capítulo III</span>
+        <h2 class="chapter-title">Lo que mi corazón necesitaba decirte</h2>
+      </div>
+
+      <!-- LOCK GATEWAY -->
+      <div class="heart-lock-card reveal" id="chapterLockGate">
+        <div class="lock-icon-ring">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="rgba(220,148,154,0.28)" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+
+        <p class="lock-quote">«Pregúntale a tu corazón y sabrás tu respuesta»</p>
+        <p class="lock-subtext">
+          Este último capítulo guarda mi verdad más íntima para ti. Ingresa los 4 números que viven en nuestra historia para abrirlo:
+        </p>
+
+        <div class="pin-dots" id="pinDots">
+          <div class="pin-dot" data-idx="0"></div>
+          <div class="pin-dot" data-idx="1"></div>
+          <div class="pin-dot" data-idx="2"></div>
+          <div class="pin-dot" data-idx="3"></div>
+        </div>
+
+        <div class="lock-error-msg" id="lockErrorMsg"></div>
+
+        <div class="keypad-grid" id="keypadGrid">
+          <button type="button" class="key-btn" data-num="1">1</button>
+          <button type="button" class="key-btn" data-num="2">2</button>
+          <button type="button" class="key-btn" data-num="3">3</button>
+          <button type="button" class="key-btn" data-num="4">4</button>
+          <button type="button" class="key-btn" data-num="5">5</button>
+          <button type="button" class="key-btn" data-num="6">6</button>
+          <button type="button" class="key-btn" data-num="7">7</button>
+          <button type="button" class="key-btn" data-num="8">8</button>
+          <button type="button" class="key-btn" data-num="9">9</button>
+          <button type="button" class="key-btn action-key" id="clearPinBtn">Borrar</button>
+          <button type="button" class="key-btn" data-num="0">0</button>
+          <button type="button" class="key-btn action-key" id="backPinBtn">⌫</button>
+        </div>
+
+        <button type="button" class="unlock-submit-btn" id="unlockChapterBtn">Abrir mi carta 🤍</button>
+      </div>
+
+      <!-- UNLOCKED CHAPTER 3 CONTENT -->
+      <div class="chapter3-unlocked-content" id="chapter3Content">
+        <article class="letter-container">
+          <p class="letter-salutation">Mi amor, mi Karina,</p>
+
+          <p class="letter-paragraph">
+            Sabía que tu corazón recordaría esos cuatro números. Ahora que estás aquí dentro, quiero que sientas mi abrazo en cada palabra: <strong>estoy aquí para ti, incondicionalmente</strong>. Sé que hoy estás pasando por un momento muy difícil y que tu alma necesita calma; nunca olvides que cuentas conmigo para sostenerte en cualquier tormenta.
+          </p>
+
+          <p class="letter-paragraph">
+            También sé que últimamente las cosas entre nosotros han estado rotas y distantes. Pero quiero mirarte a los ojos a través de esta carta y decirte la verdad más pura que tengo: <strong>por mucho que me ignores o que el camino se ponga cuesta arriba, te sigo amando con toda mi alma y te sigo eligiendo</strong>.
+          </p>
+
+          <!-- SECCIÓN ÍNTIMA CON SU HISTORIA REAL -->
+          <div class="truth-divider">
+            <span class="truth-badge">A corazón abierto</span>
+            <h3 class="truth-heading">Nuestra historia, tu miedo y lo que siento hoy</h3>
+
+            <p class="letter-paragraph">
+              Han pasado ya tres semanas y media desde que terminamos, y hace una semana volví a buscarte con el alma descubierta, escribiéndote y diciéndote sin miedo cuánto te amo. Desde entonces sentí mucha distancia de tu parte, como si hubieras levantado un escudo para protegerte de volver a salir lastimada.
+            </p>
+
+            <p class="letter-paragraph">
+              Cuando nos encontramos en esa cena y te pedí regresar, entendí tu temor de que volviera a ocurrir lo mismo. Por eso te lo dije con total convicción: <strong>démonos una oportunidad, avancemos los dos con madurez y con precisión</strong>. Yo estoy luchando de verdad, cambiando y demostrándote con hechos que quiero hacer las cosas bien contigo.
+            </p>
+
+            <p class="letter-paragraph">
+              Nunca voy a olvidar aquel lunes en que llegaste de sorpresa a mi casa y te quedaste conmigo. Aunque decías que no querías nada, en tu mirada y en cada instante juntos sentí que <strong>tú también me amas</strong>. Sé que dentro de ti sí quieres estar conmigo, pero siento que el miedo te está atando y no te deja soltarte.
+            </p>
+
+            <p class="letter-paragraph">
+              No te voy a ocultar cómo me siento: este fin de semana fue muy duro y doloroso para mí. Sentir tu silencio y que me ignoraras tanto me partió el alma, porque estoy luchando con todo por nosotros y siento que a veces no alcanzas a ver cuánto me duele esta incertidumbre. Una historia tan bonita como la nuestra se salva cuando los dos luchan, no cuando uno solo intenta sostenerla.
+            </p>
+
+            <div class="flowers-note letter-paragraph">
+              <strong>Por eso hoy vine a dejarte estas flores y me retiro para darte paz.</strong> Sé que estás atravesando un problema personal y que hoy no quieres ver a nadie; no quiero invadir tu dolor ni presionarte en este instante. Solo quiero que al ver estas flores sientas que te amo profundamente y que estoy aquí para apoyarte.
+            </div>
+
+            <p class="letter-paragraph">
+              <strong>Quiero regresar contigo, Karina. Quiero esa oportunidad más para amarnos bien.</strong> Cuando pase este mal momento de hoy y puedas respirar un poco, no dejes que el miedo decida por ti. Te amo demasiado como para quedarme en el aire: cuando tu corazón esté un poco más tranquilo, regálame una respuesta honesta sobre nosotros.
+            </p>
+          </div>
+
+          <div class="letter-signature">
+            Con todo mi amor y mi vida en tus manos.
+          </div>
+        </article>
+
+        <!-- COHERENT ROMANTIC CLOSING -->
+        <div class="closing-choice-box">
+          <h3>Cuando hoy pase la tormenta y respires...</h3>
+          <p>
+            Quédate tranquila con tus flores. Cuando estés lista para hablarme con el corazón, toca cualquiera de estas dos opciones y me llegará directo a mi WhatsApp:
+          </p>
+
+          <div class="choice-buttons">
+            <a
+              class="choice-card-btn primary-heart"
+              id="btnHug"
+              href="https://wa.me/51966716937?text=Hola%2C%20abr%C3%AD%20el%20cap%C3%ADtulo%203%20y%20vi%20las%20flores...%20Hoy%20no%20tengo%20que%20explicar%20nada%2C%20solo%20quiero%20ese%20abrazo%20y%20hablar%20contigo%20%F0%9F%A4%8D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>
+                Quiero ese abrazo 🤍
+                <span class="wa-badge">WhatsApp →</span>
+              </strong>
+              <span>Toca aquí para abrir mi chat directo y darnos ese abrazo que tanto nos hace falta.</span>
+            </a>
+
+            <a
+              class="choice-card-btn"
+              id="btnSlow"
+              href="https://wa.me/51966716937?text=Gracias%20por%20las%20flores%20y%20por%20entender%20c%C3%B3mo%20me%20siento%20hoy.%20Cuando%20respire%20un%20poco%20hablemos%20con%20calma%20sobre%20nosotros%20%E2%9C%A8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>
+                Hablemos con el corazón ✨
+                <span class="wa-badge">WhatsApp →</span>
+              </strong>
+              <span>Toca aquí para escribirme cuando hayas respirado y quieras que conversemos sinceros.</span>
+            </a>
+          </div>
+
+          <div class="response-reveal" id="responseReveal">
+            <h4 id="responseTitle">Estoy aquí para ti</h4>
+            <p id="responseText"></p>
+            <div class="action-row">
+              <a class="whatsapp-direct-btn" id="whatsappDirectLink" href="https://wa.me/51966716937" target="_blank" rel="noopener noreferrer">
+                Abrir WhatsApp ahora
+              </a>
+              <button class="copy-voucher-btn" id="copyMsgBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span id="copyBtnText">Copiar mensaje</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ==========================================================================
+       1. INTERACTIVE FIREFLY & ROSE PETAL LIGHT SKY
+       ========================================================================== */
+    const canvas = document.getElementById('fireflies-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const pointer = { x: width / 2, y: height / 2, active: false };
+    const fireflies = [];
+    const FIREFLY_COUNT = window.innerWidth < 680 ? 36 : 62;
+
+    class Firefly {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * width;
+        this.y = initial ? Math.random() * height : height + 20;
+        this.size = Math.random() * 2.4 + 0.9;
+        this.speedX = (Math.random() - 0.5) * 0.45;
+        this.speedY = -(Math.random() * 0.35 + 0.12);
+        this.alpha = Math.random() * 0.68 + 0.22;
+        this.pulseSpeed = Math.random() * 0.02 + 0.008;
+        this.phase = Math.random() * Math.PI * 2;
+        this.isRose = Math.random() > 0.52;
+      }
+      update() {
+        this.phase += this.pulseSpeed;
+        this.x += this.speedX + Math.sin(this.phase) * 0.25;
+        this.y += this.speedY;
+
+        if (pointer.active) {
+          const dx = pointer.x - this.x;
+          const dy = pointer.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140 && dist > 1) {
+            this.x += (dx / dist) * 0.34;
+            this.y += (dy / dist) * 0.34;
+          }
+        }
+
+        if (this.y < -20 || this.x < -30 || this.x > width + 30) {
+          this.reset(false);
+        }
+      }
+      draw() {
+        const currentAlpha = Math.max(0.08, Math.min(0.95, this.alpha + Math.sin(this.phase) * 0.3));
+        ctx.beginPath();
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4.5);
+        if (this.isRose) {
+          gradient.addColorStop(0, `rgba(220, 148, 154, ${currentAlpha})`);
+          gradient.addColorStop(1, 'rgba(220, 148, 154, 0)');
+        } else {
+          gradient.addColorStop(0, `rgba(235, 199, 150, ${currentAlpha})`);
+          gradient.addColorStop(1, 'rgba(235, 199, 150, 0)');
+        }
+        ctx.fillStyle = gradient;
+        ctx.arc(this.x, this.y, this.size * 4.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < FIREFLY_COUNT; i++) {
+      fireflies.push(new Firefly());
+    }
+
+    function animateFireflies() {
+      ctx.clearRect(0, 0, width, height);
+      fireflies.forEach(f => {
+        f.update();
+        f.draw();
+      });
+      requestAnimationFrame(animateFireflies);
+    }
+    animateFireflies();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.active = true;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        pointer.x = e.touches[0].clientX;
+        pointer.y = e.touches[0].clientY;
+        pointer.active = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      setTimeout(() => { pointer.active = false; }, 600);
+    }, { passive: true });
+
+    function spawnSparkles(x, y, count = 6) {
+      if (!x || !y) return;
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('span');
+        spark.className = 'click-sparkle';
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
+        const distance = 24 + Math.random() * 38;
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        spark.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 850);
+      }
+    }
+
+    document.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch' || e.pointerType === 'mouse') {
+        spawnSparkles(e.clientX, e.clientY, 6);
+      }
+    }, { passive: true });
+
+    /* ==========================================================================
+       2. MOBILE-SAFE WEB AUDIO API WARM AMBIENT PIANO SYNTHESIZER
+       ========================================================================== */
+    let audioCtx = null;
+    let isPlayingMusic = false;
+    let chordTimer = null;
+
+    const soundToggle = document.getElementById('soundToggle');
+    const soundLabel = document.getElementById('soundLabel');
+
+    const chords = [
+      [261.63, 329.63, 392.00, 493.88],
+      [220.00, 261.63, 329.63, 392.00],
+      [174.61, 220.00, 261.63, 329.63],
+      [196.00, 246.94, 293.66, 392.00]
+    ];
+    let chordIndex = 0;
+
+    function unlockAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (audioCtx) {
+        const buffer = audioCtx.createBuffer(1, 1, 22050);
+        const source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        if (source.start) source.start(0);
+      }
+    }
+
+    function playAmbientChord(freqs) {
+      if (!audioCtx || !isPlayingMusic) return;
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const now = audioCtx.currentTime;
+
+      freqs.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.22);
+
+        gain.gain.setValueAtTime(0.0001, now + idx * 0.22);
+        gain.gain.exponentialRampToValueAtTime(0.026, now + idx * 0.22 + 1.2);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.22 + 5.2);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now + idx * 0.22);
+        osc.stop(now + idx * 0.22 + 5.4);
+      });
+    }
+
+    function startAmbientMusic() {
+      unlockAudioContext();
+      if (!audioCtx) return;
+      isPlayingMusic = true;
+      soundToggle.classList.add('active');
+      soundLabel.textContent = 'Pausar melodía';
+
+      playAmbientChord(chords[chordIndex]);
+      chordIndex = (chordIndex + 1) % chords.length;
+
+      clearInterval(chordTimer);
+      chordTimer = setInterval(() => {
+        if (!isPlayingMusic) return;
+        playAmbientChord(chords[chordIndex]);
+        chordIndex = (chordIndex + 1) % chords.length;
+      }, 4800);
+    }
+
+    function stopAmbientMusic() {
+      isPlayingMusic = false;
+      clearInterval(chordTimer);
+      soundToggle.classList.remove('active');
+      soundLabel.textContent = 'Melodía suave';
+    }
+
+    soundToggle.addEventListener('click', () => {
+      if (isPlayingMusic) {
+        stopAmbientMusic();
+      } else {
+        startAmbientMusic();
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && isPlayingMusic) {
+        stopAmbientMusic();
+      }
+    });
+
+    /* ==========================================================================
+       3. HERO HEART TRIGGER
+       ========================================================================== */
+    document.getElementById('startJourneyBtn').addEventListener('click', () => {
+      if (!isPlayingMusic) {
+        startAmbientMusic();
+      }
+      document.getElementById('chapter-refugio').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* ==========================================================================
+       4. BREATHING SANCTUARY GUIDE
+       ========================================================================== */
+    const breathOrb = document.getElementById('breathOrb');
+    const breathStatus = document.getElementById('breathStatus');
+    const toggleBreathBtn = document.getElementById('toggleBreathBtn');
+    let breathRunning = true;
+    let breathTimeout = null;
+
+    function runBreathCycle() {
+      if (!breathRunning) return;
+      breathStatus.textContent = 'Inhala despacio (4s)...';
+      breathOrb.className = 'breath-orb inhale';
+
+      breathTimeout = setTimeout(() => {
+        if (!breathRunning) return;
+        breathStatus.textContent = 'Sostén un instante...';
+        breathOrb.className = 'breath-orb hold';
+
+        breathTimeout = setTimeout(() => {
+          if (!breathRunning) return;
+          breathStatus.textContent = 'Suelta todo el peso...';
+          breathOrb.className = 'breath-orb exhale';
+
+          breathTimeout = setTimeout(() => {
+            runBreathCycle();
+          }, 4200);
+        }, 2500);
+      }, 4000);
+    }
+    runBreathCycle();
+
+    toggleBreathBtn.addEventListener('click', () => {
+      breathRunning = !breathRunning;
+      if (breathRunning) {
+        toggleBreathBtn.textContent = 'Pausar guía';
+        runBreathCycle();
+      } else {
+        clearTimeout(breathTimeout);
+        toggleBreathBtn.textContent = 'Reanudar guía';
+        breathStatus.textContent = 'Tómate tu tiempo...';
+        breathOrb.className = 'breath-orb';
+      }
+    });
+
+    /* ==========================================================================
+       5. RELEASE WEIGHT INTERACTION
+       ========================================================================== */
+    const weightInput = document.getElementById('weightInput');
+    const releaseBtn = document.getElementById('releaseBtn');
+    const releaseFeedback = document.getElementById('releaseFeedback');
+
+    releaseBtn.addEventListener('click', () => {
+      const text = weightInput.value.trim();
+      if (!text) {
+        releaseFeedback.textContent = 'Incluso si hoy no tienes palabras, mi corazón está contigo.';
+        releaseFeedback.classList.add('show');
+        return;
+      }
+
+      const rect = weightInput.getBoundingClientRect();
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+          spawnSparkles(
+            rect.left + Math.random() * rect.width,
+            rect.top + Math.random() * rect.height,
+            7
+          );
+        }, i * 110);
+      }
+
+      weightInput.classList.add('dissolving');
+      releaseFeedback.textContent = 'Ojalá pudiera abrazarte y quitar ese peso ahora mismo.';
+      releaseFeedback.classList.add('show');
+
+      setTimeout(() => {
+        weightInput.value = '';
+        weightInput.classList.remove('dissolving');
+      }, 850);
+    });
+
+    /* ==========================================================================
+       6. ROMANTIC PROMISES CARDS
+       ========================================================================== */
+    const promiseCards = document.querySelectorAll('.promise-card');
+    const cardsProgress = document.getElementById('cardsProgress');
+    const openedSet = new Set();
+
+    promiseCards.forEach(card => {
+      const toggleCard = () => {
+        card.classList.toggle('opened');
+        const id = card.getAttribute('data-card');
+        if (card.classList.contains('opened')) {
+          openedSet.add(id);
+        }
+        const count = openedSet.size;
+        cardsProgress.textContent = count === 4
+          ? 'Has descubierto las 4 verdades. Te amo con todo lo que soy.'
+          : `Has descubierto ${count} de 4 verdades`;
+      };
+
+      card.addEventListener('click', toggleCard);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCard();
+        }
+      });
+    });
+
+    /* ==========================================================================
+       7. CHAPTER 3 HEART LOCK (PASSWORD: 0305)
+       ========================================================================== */
+    const SECRET_CODE = '0305';
+    let enteredPin = '';
+
+    const pinDots = document.querySelectorAll('.pin-dot');
+    const lockErrorMsg = document.getElementById('lockErrorMsg');
+    const chapterLockGate = document.getElementById('chapterLockGate');
+    const chapter3Content = document.getElementById('chapter3Content');
+
+    function updatePinUI() {
+      pinDots.forEach((dot, idx) => {
+        dot.classList.remove('error');
+        if (idx < enteredPin.length) {
+          dot.textContent = enteredPin[idx];
+          dot.classList.add('filled');
+        } else {
+          dot.textContent = '';
+          dot.classList.remove('filled');
+        }
+      });
+    }
+
+    function verifySecretPin() {
+      if (enteredPin === SECRET_CODE) {
+        lockErrorMsg.textContent = '';
+        const gateRect = chapterLockGate.getBoundingClientRect();
+        spawnSparkles(gateRect.left + gateRect.width / 2, gateRect.top + gateRect.height / 3, 16);
+
+        chapterLockGate.style.display = 'none';
+        chapter3Content.classList.add('open');
+
+        // Trigger illumination for newly revealed paragraphs
+        const paragraphs = chapter3Content.querySelectorAll('.letter-paragraph');
+        paragraphs.forEach((p, idx) => {
+          setTimeout(() => p.classList.add('lit'), 180 + idx * 140);
+        });
+      } else {
+        pinDots.forEach(dot => dot.classList.add('error'));
+        lockErrorMsg.textContent = 'Cierra los ojos un segundo, pregúntale a tu corazón y vuelve a intentarlo 🤍';
+        setTimeout(() => {
+          enteredPin = '';
+          updatePinUI();
+        }, 550);
+      }
+    }
+
+    document.querySelectorAll('#keypadGrid .key-btn[data-num]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (enteredPin.length < 4) {
+          enteredPin += btn.getAttribute('data-num');
+          lockErrorMsg.textContent = '';
+          updatePinUI();
+          if (enteredPin.length === 4) {
+            setTimeout(verifySecretPin, 220);
+          }
+        }
+      });
+    });
+
+    document.getElementById('clearPinBtn').addEventListener('click', () => {
+      enteredPin = '';
+      lockErrorMsg.textContent = '';
+      updatePinUI();
+    });
+
+    document.getElementById('backPinBtn').addEventListener('click', () => {
+      enteredPin = enteredPin.slice(0, -1);
+      lockErrorMsg.textContent = '';
+      updatePinUI();
+    });
+
+    document.getElementById('unlockChapterBtn').addEventListener('click', () => {
+      if (enteredPin.length < 4) {
+        lockErrorMsg.textContent = 'Ingresa los 4 números de nuestra historia ✨';
+        return;
+      }
+      verifySecretPin();
+    });
+
+    /* ==========================================================================
+       8. SCROLL REVEAL
+       ========================================================================== */
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    /* ==========================================================================
+       9. DIRECT WHATSAPP CLOSING CHOICES (+51 966716937)
+       ========================================================================== */
+    const WHATSAPP_PHONE = '51966716937';
+    const responseReveal = document.getElementById('responseReveal');
+    const responseTitle = document.getElementById('responseTitle');
+    const responseText = document.getElementById('responseText');
+    const copyMsgBtn = document.getElementById('copyMsgBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
+    const whatsappDirectLink = document.getElementById('whatsappDirectLink');
+
+    let currentShareMessage = '';
+
+    function showClosingBackup(title, description, shareMsg) {
+      responseTitle.textContent = title;
+      responseText.textContent = description;
+      currentShareMessage = shareMsg;
+      whatsappDirectLink.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(shareMsg)}`;
+      copyBtnText.textContent = 'Copiar mensaje';
+      responseReveal.classList.add('active');
+    }
+
+    document.getElementById('btnHug').addEventListener('click', () => {
+      const msg = 'Hola, abrí el capítulo 3 y vi las flores... Hoy no tengo que explicar nada, solo quiero ese abrazo y hablar contigo 🤍';
+      showClosingBackup(
+        'Abriendo nuestro chat de WhatsApp 🤍',
+        'Si no se abrió automáticamente, toca el botón dorado aquí abajo o copia el mensaje listo para enviarme:',
+        msg
+      );
+    });
+
+    document.getElementById('btnSlow').addEventListener('click', () => {
+      const msg = 'Gracias por las flores y por entender cómo me siento hoy. Cuando respire un poco hablemos con calma sobre nosotros ✨';
+      showClosingBackup(
+        'Abriendo WhatsApp para hablar con el corazón ✨',
+        'Cuando quieras enviarlo, ya tienes el mensaje listo aquí abajo:',
+        msg
+      );
+    });
+
+    copyMsgBtn.addEventListener('click', async () => {
+      if (!currentShareMessage) return;
+      try {
+        await navigator.clipboard.writeText(currentShareMessage);
+        copyBtnText.textContent = '¡Mensaje copiado! 🤍';
+      } catch (err) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = currentShareMessage;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        copyBtnText.textContent = '¡Mensaje copiado! 🤍';
+      }
+    });
+  </script>
+</body>
+</html>
